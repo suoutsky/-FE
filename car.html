@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>购物车</title>
@@ -13,125 +14,174 @@
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
+
 <body>
-<table class="table table-bordered ">
-    <thead >
-    <tr class="success">
-        <th>
-            <input type="checkbox" id="checkAll">
-        </th>
-        <th>
-            商品名
-        </th>
-        <th>
-            商品单价
-        </th>
-        <th>
-            商品描述
-        </th>
-        <th>
-            编辑
-        </th>
-    </tr>
-    </thead>
-    <tbody>
+    <table class="table table-bordered ">
+        <thead>
+            <tr class="success">
+                <th>
+                    <input type="checkbox" id="checkAll">
+                </th>
+                <th>
+                    商品名
+                </th>
+                <th>
+                    商品单价
+                </th>
+                <th>
+                    商品描述
+                </th>
+                <th>
+                    编辑
+                </th>
+            </tr>
+        </thead>
+        <tbody>
 
-    <tr class="active">
-        <th>
-            <input type="checkbox" name='checked_goods' id="leo">
-        </th>
-        <th class="name">篮球</th>
-        <th>1</th>
-        <th class="des">球类</th>
-         <th> <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">（危险）Danger</button> </th>
-    </tr>
-    <tr class="active">
-        <th>
-            <input type="checkbox" name='checked_goods' id="kd">
-        </th>
-        <th>篮球</th>
-        <th>2</th>
-        <th>球类</th>
-        <th> <button type="button" class="btn btn-danger">（危险）Danger</button> </th>
+            <tr class="active">
+                <th>
+                    <input type="checkbox" name='checked_goods' id="leo">
+                </th>
+                <th class="name">篮球</th>
+                <th>1</th>
+                <th class="des">球类</th>
+                <th>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">（危险）Danger</button>
+                </th>
+            </tr>
+            <tr class="active">
+                <th>
+                    <input type="checkbox" name='checked_goods' id="kd">
+                </th>
+                <th>篮球</th>
+                <th>2</th>
+                <th>球类</th>
+                <th>
+                    <button type="button" class="btn btn-danger">（危险）Danger</button>
+                </th>
 
-    </tr>
-    <tr class="active">
-        <th>
-            <input type="checkbox" name='checked_goods' id="kb">
-        </th>
-        <th>篮球</th>
-        <th>3</th>
-        <th>球类</th>
-        <th> <button type="button" class="btn btn-danger">（危险）Danger</button> </th>
-    </tr>
-    </tbody>
-</table>
-<div>选中<span id="selected">0</span>个</div>
-<button class="btn btn-success" id="show"> 选中的是</button>
+            </tr>
+            <tr class="active">
+                <th>
+                    <input type="checkbox" name='checked_goods' id="kb">
+                </th>
+                <th>篮球</th>
+                <th>3</th>
+                <th>球类</th>
+                <th>
+                    <button type="button" class="btn btn-danger">（危险）Danger</button>
+                </th>
+            </tr>
+        </tbody>
+    </table>
+    <div>选中<span id="selected">0</span>个</div>
+    <button class="btn btn-success" id="show"> 选中的是</button>
 
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label for="recipient-name" class="control-label">新商品名:</label>
-                        <input type="text" class="form-control" id="recipient-name">
-                    </div>
-                    <div class="form-group">
-                        <label for="message-text" class="control-label">新商品描述:</label>
-                        <textarea class="form-control" id="message-text"></textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="saveChange">Save changes</button>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label">新商品名:</label>
+                            <input type="text" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="control-label">新商品描述:</label>
+                            <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="saveChange">Save changes</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<script>
-    $(function () {
+    <script>
+        $(function() {
 
-        //全选单选
-        function getCheck() {
-            var cllo = [];
-            $("input[type='checkbox'][name='checked_goods']").each(function () {
-                var isE = cllo.indexOf($(this).attr('id'));
-                if (this.checked == true) {
-                    cllo.push($(this).attr('id'));
+
+
+
+            /*用户-批量*/
+            function noAllSelectBtn() {
+                $('#checkAll').prop("checked", false);
+            }
+
+            function allSelect() {
+                  $("input[type='checkbox'][name='checked_goods']").prop("checked", true);
+
+            }
+
+            function noSelect() {
+                $("input[type='checkbox'][name='checked_goods']").prop("checked", false);
+            }
+
+
+            // 全选 仅效果
+            $('#checkAll').on('click', function() {
+                if ($(this).is(':checked')) {
+                        	allSelect();
+                }else{
+                       noSelect();
                 }
-                console.log(cllo);
-                $('#selected').html(cllo);
             })
-        }
 
-        $('#show').on('click', function () {
-            getCheck()
+            //  如果存在 未选中的 则 全选框 去掉
+              $("input[type='checkbox'][name='checked_goods']").on('click',function(){
+
+                if(!$(this).is(':checked')){
+                  noAllSelectBtn()
+                }
+              })
+
+
+            //选中的是
+            function getCheck() {
+                var cllo = [];
+                $("input[type='checkbox'][name='checked_goods']").each(function() {
+                    var isE = cllo.indexOf($(this).attr('id'));
+                    if (this.checked == true) {
+                        cllo.push($(this).attr('id'));
+                    }
+                    console.log(cllo);
+                    $('#selected').html(cllo);
+                })
+            }
+
+            $('#show').on('click', function() {
+                getCheck()
+            })
+
+
+
+
+
+
+
+
+
+            //layer
+            $('#saveChange').on('click', function() {
+                var a = $('#recipient-name').val();
+                var b = $('#message-text').val();
+                $('.name').text(a);
+                $('.des').text(b);
+
+            })
+
+
+
         })
-
-
-        //layer
-        $('#saveChange').on('click', function() {
-          var a =   $('#recipient-name').val();
-          var b =  $('#message-text').val();
-          $('.name').text(a);
-          $('.des').text(b);
-
-        })
-
-
-
-    })
-
-
-</script>
+    </script>
 </body>
+
 </html>
