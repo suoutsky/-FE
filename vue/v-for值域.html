@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.mini.js"></script>
+</head>
+<body>
+<div id="text">
+    <span v-for="n in 10">{{n}}</span>
+</div>
+<script >
+    new Vue({
+        el:"#text",
+        data:{
+            n:'10'
+        }
+    })
+</script>
+</body>
+</html>

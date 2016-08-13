@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件构造器</title>
+    <script src="js/vue.mini.js"></script>
+</head>
+<body>
+
+<script>
+//局部替换
+    var Child = Vue.extend({})
+    var Parent= Vue.extend({
+        template:'...',
+        'my-component':Child        //局部  可以☞在父组件中使用了
+    })
+
+//注册语法糖
+  Vue.component('my-component',{})
+
+
+
+
+
+</script>
+</body>
+</html>

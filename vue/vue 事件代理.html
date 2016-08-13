@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.mini.js"></script>
+</head>
+<body id="example">
+<div>
+    <button v-on:click="greet">Greet</button>
+    <div v-on:click="greet">Greet</div>
+    <span v-on:click="greet">Greet</span>
+    <input v-on:keyup.13="greet" value="demo2">
+</div>
+<script>
+    var vm = new Vue({
+      el: '#example',
+      data: {
+        name: 'vue.js'
+      },
+      methods: {
+        greet: function () {
+            console.log(event.target.tagName)
+        }
+      }
+    })
+
+</script>
+</body>
+</html>

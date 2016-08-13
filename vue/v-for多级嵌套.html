@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.mini.js"></script>
+</head>
+<body>
+  <div class="main-data-list" v-for="item in items">
+      <p class="tab">{{item.tab}}</p>
+      <div class="show">
+              <div v-for="list in item.datalist" v-on:click="show">
+                  <label>{{ list.label }}</label>
+              </div>
+      </div>
+  </div>
+
+<script>
+    var List_App = {};
+    List_App.dataList = new Vue({
+        el: ".main-data-list",
+        data: {
+            items:[
+                {
+                    tab:'颜色',
+                    datalist:[
+                        {label:'黑白'},
+                        {label:'彩色'}
+                    ]
+                },
+                {
+                    tab:'尺寸',
+                    datalist:[
+                        {label:'一尺'},
+                        {label:'三寸'}
+                    ]
+                }
+            ]
+        },
+        methods: {
+         show: function (){
+
+         }
+        }
+    });
+</script>
+<style>
+    .main-data-list p{
+        width:5vw;
+        heigt:1vw;
+        background-color:darkolivegreen;
+        border: 1px solid darkgreen;
+        margin-left:5px;
+        border-radius:2px;
+    }
+    .show div{
+        width:5vw;
+        heigt:1vw;
+        background-color:#e3e3e3;
+        border: 1px solid darkgreen;
+        display:inline-block;
+        border-radius:2px;
+        margin-left:5px;
+    }
+
+</style>
+</body>
+</html>

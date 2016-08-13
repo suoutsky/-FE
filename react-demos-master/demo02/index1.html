@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+    var datas = [ 'kb', 'kmr', 'cp3']
+    ReactDOM.render(
+            <div>
+    {
+        datas.map(function (data){
+
+        return <div>mvp,{data}!</div>
+    })
+    }
+             </div>,
+            document.getElementById('example')
+    )
+</script>
+</body>
+</html>

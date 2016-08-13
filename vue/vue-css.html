@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.mini.js"></script>
+    <style>
+        .classA {
+            border-top: 1px solid rebeccapurple;
+        }
+
+        .classB {
+            border-bottom: 1px solid blueviolet;
+        }
+    </style>
+</head>
+<body>
+<div id="demo">
+    <div v-bind:class="obj">hhh</div>
+    <div v-bind:style="{color:cl,border:bo}">kobe vs KD</div>
+    <div v-bind:style="styleObj">Leo</div>
+</div>
+<script>
+    new Vue({
+        el: "#demo",
+        data: {
+            cl: 'red',
+            bo: '1px solid red',
+            obj: {
+                classA: true,
+                classB: false
+
+            },
+            styleObj:{
+                border:"1px solid blue",
+                fontSize:"20px"
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

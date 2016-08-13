@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>遍历器</title>
+    <script src="js/vue.mini.js"></script>
+</head>
+<body>
+
+<div id="el" v-for="(index,item) in items">
+    {{index}}-{{item.message}}
+</div>
+<script>
+    new Vue({
+        el: "#el",
+        data: {
+            items: [
+                {message:"1a"},
+                {message:"2a"},
+                {message:"3a"},
+                {message:"4a"}
+            ]
+        }
+    })
+</script>
+</body>
+</html>

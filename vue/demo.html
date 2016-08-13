@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.mini.js"></script>
+</head>
+<div id="app">
+    <ul v-for="todo in todos">
+        <li>{{todo.text}}</li>
+    </ul>
+</div>
+
+
+<body>
+
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            todos:[
+                {text:'lear js'},
+                {text:'kobe'},
+                {text:'21'}
+            ]
+        }
+    })
+</script>
+
+</body>
+
+</html>

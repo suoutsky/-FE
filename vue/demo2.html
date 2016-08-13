@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>处理用户输入</title>
+    <script src="js/vue.mini.js"></script>
+    <style>
+        /*[v-cloak]{*/
+            /*display: none;*/
+        /*}*/
+    </style>
+</head>
+<diV id="app">
+   <input v-on:keyup.enter="add" v-model="newtodo">
+    <ul >
+        <li v-for="todo in todos">
+            <span>{{todo.text}}</span>
+            <button v-on:click="remove($index)">x</button>
+
+        </li>
+    </ul>
+</diV>
+
+<body>
+<script>
+ new Vue({
+     el:'#app',
+         data:{
+            newtodo:'',
+             todos:[
+                 {text:"curry 31"}
+            ]
+ },
+ methods:{
+     add: function(){
+       var kobe= this.newtodo.trim();
+//         alert(kobe);
+         if(kobe){
+             this.todos.push({text:kobe})
+             this.newtodo=''
+         }
+     },
+     remove: function(index){
+         this.todos.splice(index,1)
+     }
+ }
+ })
+
+</script>
+
+</body>
+</html>

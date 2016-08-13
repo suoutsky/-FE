@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<span style="font-family:Courier New;font-size:14px;"><script type="text/javascript">
+
+    var arr = [ 1, 2, 3, 4, 5, 6 ];
+
+    console.log( arr.some( function( item, index, array ){
+        console.log( 'item=' + item + ',index='+index+',array='+array );
+        return item > 3;
+    }));
+
+    console.log( arr.every( function( item, index, array ){
+        console.log( 'item=' + item + ',index='+index+',array='+array );
+        return item > 3;
+    }));
+
+</script></span>
+</body>
+</html>

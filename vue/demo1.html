@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>处理用户输入</title>
+    <script src="js/vue.mini.js"></script>
+</head>
+<diV id="app">
+    <p>{{text}}</p>
+    <button v-on:click="re">re</button>
+</diV>
+<body>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            text:"tim21"
+        },
+        methods:{
+            re:function(){
+               this.text= this.text.split('').reverse().join('');
+            }
+        }
+    })
+
+
+window.onload=function() {
+    var data = {a: 1}
+    var vm = new Vue({
+        data: data
+    })
+
+    console.log(vm.a === data.a)// -> true
+
+    // 设置属性也会影响到原始数据
+    console.log(vm.a)
+    //vm.a = 2
+    //data.a
+    console.log(data.a)
+}
+</script>
+
+</body>
+</html>

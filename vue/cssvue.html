@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.mini.js"></script>
+    <style>
+        .class-a {
+            border-bottom: 1px solid darkred;
+        }
+
+        .class-b {
+            border-top: 1px solid red;
+        }
+        .classC{
+            border-left:1px solid green;
+        }
+        .classD{
+            border-right:1px solid rebeccapurple;
+        }
+        #demo {
+            height: 40px;
+            width: 40px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="demo">
+    <div v-bind:class="[classA, classB]">
+        on my cuaay!
+    </div>
+    <br>
+    <div v-bind:class="{'classC':isc,'classD':isd}">
+             on kobe!
+    </div>
+</div>
+<script>
+    new Vue({
+        el: '#demo',
+        data: {
+            classA: 'class-a',
+            classB: 'class-b',
+            isc:true,
+            isd:false
+        }
+    })
+</script>
+
+</body>
+</html>

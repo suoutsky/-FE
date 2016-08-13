@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.mini.js"></script>
+    <style>
+        div{width:50%;
+                margin:0 auto;
+            padding:30px 0px;
+            background-color:#e3e3e3;
+        }
+    </style>
+</head>
+<body>
+<div id="el">
+    <div v-on:click="greet">
+    <button >
+        good</button>
+    </div>
+    <button v-on:click="say('hello!',$event)">show you</button>
+    <br>
+    <br>
+    <!--<span>Message is: {{ message }}</span>-->
+    <input type="text" value="{{message}}"   v-model="message" >  <!-- 双向数据绑定 -->
+    <br>
+    <br>
+    <input type="text" v-model="message"  value="{{message}}">
+
+    <div>
+        <h5> checkBox</h5>
+        <input type="checkbox" id="checkBox" v-model="checked">
+        <label for="checkBox">{{checkBox}}</label>
+    </div>
+</div>
+ <script>
+     var vm = new Vue({
+         el:"#el",
+         data:{
+             name:"vue.js",
+             message:"kobe"
+         },
+         methods:{
+             greet:function(event){
+                 console.log('hello'+this.name+"!");
+                 console.log(event.target.tagName);
+                 console.log(event.target);
+                 console.log(event.currentTarget);
+             },
+             say:function(msg,event){
+                 console.log(event.target.tagName);
+                 console.log(event.target);
+                 console.log(event.currentTarget);
+                 event.preventDefault()
+             }
+         }
+     })
+
+     vm.greet();
+ </script>
+</body>
+</html>

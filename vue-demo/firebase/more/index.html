@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../js/vue.mini.js"></script>
+    <style>
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+        }
+
+        ul {
+            padding: 0;
+        }
+
+        .user {
+            height: 30px;
+            line-height: 30px;
+            padding: 10px;
+            border-top: 1px solid #eee;
+            overflow: hidden;
+            transition: all .25s ease;
+        }
+
+        .user:last-child {
+            border-bottom: 1px solid #eee;
+        }
+
+        .v-enter, .v-leave {
+            height: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            border-top-width: 0;
+            border-bottom-width: 0;
+        }
+
+        .errors {
+            color: #f00;
+        }
+    </style>
+</head>
+<body>
+    <div id="id">
+        <ul>
+            <li class="user" v-for="user in users" transition>
+                <span>{{user.name}}-{{user.email}}</span>
+                <button v-on:click="removeUser(user)">X</button>
+            </li>
+        </ul>
+        <form id="form" v-on:submit.prevent="addUser">
+            <input type="text" v-mode="newUser.name">
+            <input type="text" v-model="newUser.email">
+            <input type="submit" value="Add User">
+        </form>
+        <ul>
+            <li v-show="!validation">Name cannot be empty.</li>
+            <li v-show="!validation.email">Please provide a valid email address.</li>
+        </ul>
+    </div>
+        <script>
+            var emailRE = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+             var app = new Vue({
+                 el:"#id",
+                 data:{
+                     newUser:{
+                         name:'',
+                         emali:''
+                     }
+                 },
+                 firebase:{                   //类似于watch
+                     user:usersRef
+                 },
+                 computed:{
+                     validation:function(){
+                         return {
+                             name: !!this.newUser.name.trim(),
+                             email:emailRE.test(this.newUser.email)
+                         }
+                     },
+                     isValid:function(){
+                         var validation=this.validation;
+                         return Object.key(validation).every(function(key){
+                             return validation[key]
+                         })
+                     }
+                 },
+                 methods:{
+                     addUser:function(){
+                         if(this.isValid){
+                             usersRef.push(this.newUser);
+                                     this.newUser.name="";
+                             this.newUser.email="";
+                         }
+                     },
+                     removeUser: function (user) {
+                         usersRef.child(user['.key']).remove()
+                     }
+                 }
+             })
+        </script>
+</body>
+</html>

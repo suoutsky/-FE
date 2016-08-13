@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../js/vue.mini.js"></script>
+    <style>
+        body {
+            font-family: Helvetica Neue, Arial, sans-serif;
+            font-size: 14px;
+            color: #444;
+        }
+
+        table {
+            border: 2px solid #42b983;
+            border-radius: 3px;
+            background-color: #fff;
+        }
+
+        th {
+            background-color: #42b983;
+            color: rgba(255,255,255,0.66);
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -user-select: none;
+        }
+
+        td {
+            background-color: #f9f9f9;
+        }
+
+        th, td {
+            min-width: 120px;
+            padding: 10px 20px;
+        }
+
+        th.active {
+            color: #fff;
+        }
+
+        th.active .arrow {
+            opacity: 1;
+        }
+
+        .arrow {
+            display: inline-block;
+            vertical-align: middle;
+            width: 0;
+            height: 0;
+            margin-left: 5px;
+            opacity: 0.66;
+        }
+
+        .arrow.asc {
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-bottom: 4px solid #fff;
+        }
+
+        .arrow.dsc {
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 4px solid #fff;
+        }
+    </style>
+</head>
+<body>
+
+<!-- demo root element-->
+<div id="demo">
+    <form id="search">
+        <!--
+          searchQuery:"",
+          v-model="searchQuert"
+          类似于触发刷新视图 所要的数据
+        -->
+        Search<input name="query" v-model="searchQuert">
+
+    </form>
+    <!--所创建的子组件
+    gridData:[
+                { name: 'Kobe', power: 81 },
+                { name: 'Lbj', power: 61 },
+                { name: 'Curry', power: 58 },
+                { name: 'Zns', power: 51 }
+            ]
+      gridColumns:['name','power'],
+         searchQuery:"",
+    -->
+
+
+
+    <demo-grid
+          :data="gridData"
+          :columns="gridColumns"
+          :filter-key="searchQuery"
+    >
+    </demo-grid>
+    <!--props 父组件传递下来的属性-->
+</div>
+
+<!--子组件里的模板-->
+<script type="text/x-template" id="grid-template">
+    <table>
+        <thead>
+        <tr>
+            <!-- @click="sortBy(key)"  点击触发-->
+            <th v-for="key in columns"
+                @click="sortBy(key)"
+                :class="{active: sortKey == key}">
+                {{key | capitalize}}  <!--capitalize()返回一个首字母大写的字符串-->
+              <span class="arrow"
+                    :class="sortOrders[key] > 0 ? 'asc' : 'dsc'">
+              </span>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="
+            entry in data
+            | filterBy filterKey
+            | orderBy sortKey sortOrders[sortKey]">
+            <td v-for="key in columns">
+                {{entry[key]}}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</script>
+<script>
+    Vue.config.debug = true;
+    /*    接父组件传过来的值
+     * 组件实例的作用域是孤立的。这意味着不能并且不应该在子组件的模板内直接引用父组件的数据。可以使用 props 把数据传给子组件。
+
+     “prop” 是组件数据的一个字段，期望从父组件传下来。子组件需要显式地用 props 选项 声明 props：
+
+     Vue.component('child', {
+     // 声明 props
+     props: ['msg'],
+     // prop 可以用在模板内
+     // 可以用 `this.msg` 设置
+     template: '<span>{{ msg }}</span>'
+     })
+     然后向它传入一个普通字符串：
+
+     <child msg="hello!"></child>
+
+     *
+     *
+     *
+     * */
+    Vue.component('demo-grid',{
+        template:"#grid-template",
+        replace:true,
+        props:{    //接父组件 传递过来的属性
+            data:Array,
+            columns:Array,
+            filterKey:String
+        },
+        data:function(){
+            var sortOrders={};         //排序方法
+            this.columns.forEach(function (key) { // gridColumns:['name','power'],
+                sortOrders[key]=1
+            })
+            return {             //data一定要作为函数的值返回回来
+                sortKey:"",
+                sortOrders:sortOrders
+            }
+        },
+        methods:{
+            sortBy:function(key){
+                this.sortKey=key;
+                this.sortOrders[key]=this.sortOrders[key]*-1//排序切换
+            }
+        }
+
+    })
+
+    var demo= new Vue({
+        el:"#demo",
+        data:{
+            searchQuery:"",
+            gridColumns:['name','power','ball'],
+            gridData:[
+                { name: 'Kobe', power: 81 ,ball:"a"},
+                { name: 'Lbj', power: 61 ,ball:"b"},
+                { name: 'Curry', power: 58 ,ball:"c"},
+                { name: 'Zns', power: 51 ,ball:"d"}
+            ]
+        }
+    })
+</script>
+
+</body>
+</html>

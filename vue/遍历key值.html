@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.mini.js"></script>
+</head>
+<body>
+    <ul id="repeat-object" class="demo">
+        <li v-for="value in object">
+            {{$index}}:{{$key}}:{{value}}
+        </li>
+    </ul>
+<script>
+    new Vue({
+        el: '#repeat-object',
+        data: {
+            object: {
+                FirstName: 'John',
+                LastName: 'Doe',
+                Age: 30
+            }
+        }
+    })
+</script>
+
+</body>
+</html>
