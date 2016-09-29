@@ -1,0 +1,257 @@
+{
+  "data": {
+    "activityActionType": 0,
+    "activityCategoryId": -1,
+    "anticheat": false,
+    "autoOffDate": 1475157600000,
+    "bannerImage": "http://yun.dui88.com/upload/jj8peq2vqe.png",
+    "cates": [
+      {
+        "content": "22",
+        "enable": true,
+        "id": 3,
+        "name": "页面id=32"
+      },
+      {
+        "content": "newcontent",
+        "enable": false,
+        "id": 8,
+        "name": "名称8"
+      },
+      {
+        "content": "1111111",
+        "enable": true,
+        "id": 11,
+        "name": "子页面ID=11"
+      },
+      {
+        "content": "<style>\r\n    .activity-img > img {\r\n        display: block;\r\n        width: 100%;\r\n    }\r\n    .activity-list-wrapper {\r\n        position: relative;\r\n        top: -20px;\r\n    }\r\n    .activity-list {\r\n        padding: 0 10px;\r\n    }\r\n    .activity-list li {\r\n        width: 100%;\r\n        overflow: hidden;\r\n        border-radius: 8px;\r\n        display: table;\r\n        background: #fff;\r\n        margin-bottom: 10px;\r\n    }\r\n    .activity-item-img {\r\n        display: table-cell;\r\n        width: 40%;\r\n    }\r\n    .activity-item-img img {\r\n        display: block;\r\n        width: 100%;\r\n    }\r\n    .activity-item {\r\n        display: table-cell;\r\n        width: 60%;\r\n        vertical-align: middle;\r\n    }\r\n    .activity-item h3 {\r\n        font-size: 12px;\r\n        color: #333;\r\n        line-height: 2;\r\n        margin: 0 0 10px 10px;\r\n    }\r\n    .activity-item p {\r\n        margin-left: 10px;\r\n        line-height: 24px;\r\n    }\r\n    .activity-credits {\r\n        color: #ff3434;\r\n    }\r\n    .lottery-btn {\r\n        color: #fff;\r\n        background-color: #0172ff;\r\n        border-radius: 3px;\r\n        float: right;\r\n        margin-right: 10px;\r\n        padding: 0 6px;\r\n    }\r\n    .loading {\r\n        text-align: center;\r\n        display: none;\r\n    }\r\n    .nomore,\r\n    .retry {\r\n        text-align: center;\r\n        line-height: 2;\r\n        display: none;\r\n    }\r\n    </style>\r\n<div id=\"db-content\">\r\n        <div class=\"activity-img\">\r\n            <img src=\"http://yun.dui88.com/developer/img/lucky_draw_640x270.png\" alt=\"\">\r\n        </div>\r\n        <div class=\"activity-list-wrapper\">\r\n            <ul class=\"activity-list\">\r\n            </ul>\r\n            <div class=\"loading\"><img src=\"http://yun.duiba.com.cn/webapp/img/loading.gif\" width=\"30\"></div>\r\n            <div class=\"nomore\">已经没有更多了！</div>\r\n            <div class=\"retry\">加载失败，点击重试</div>\r\n        </div>\r\n    </div>\r\n    <script>\r\n    $(function() {\r\n        var\r\n            NextPage = true,\r\n            Page = 1,\r\n            IsLoading = false;\r\n        if (!NextPage) {\r\n            $('.nomore').show();\r\n        }\r\n        $(window).on('scroll', function() {\r\n            var ScrollTop = $(window).scrollTop();\r\n            var GroupHeight = $('.activity-list').height();\r\n            var WinHeight = $(window).height();\r\n            if (ScrollTop + WinHeight + 75 >= GroupHeight && !IsLoading && NextPage) {\r\n                Page++;\r\n                GetRecords();\r\n            }\r\n        })\r\n        $('.retry').on('click', function() {\r\n            $(this).hide();\r\n            GetRecords();\r\n        })\r\n\r\n        function GetRecords() {\r\n            IsLoading = true;\r\n            $('.loading').show();\r\n            $.ajax({\r\n                type: 'POST',\r\n                url: 'getcategory',\r\n                data: {\r\n                    id: config.id,\r\n                    appItemPage: Page\r\n                },\r\n                success: function(result) {\r\n                    $('.loading').hide()\r\n                    if (result.success) {\r\n                        IsLoading = false;\r\n                        NextPage = result.appItemNextPage;\r\n                        if (!NextPage) {\r\n                            $('.nomore').show();\r\n                        }\r\n                        var html = [];\r\n                        for (var i in result.data) {\r\n                            var item = result.data[i];\r\n                            html.push('<li>');\r\n                            html.push('<div class=\"activity-item-img\">');\r\n                            html.push('<img class=\"activity-img\" src=\"' + item.thumb + '\" alt=\"\">')\r\n                            html.push('</div>');\r\n                            html.push('<div class=\"activity-item\">');\r\n                            html.push('<h3>' + item.title + '</h3>');\r\n                            html.push('<p><span class=\"activity-credits\">' + item.credits + '积分</span><a href=\"' + item.link + '\" class=\"lottery-btn\">立即抽奖 ></a></p>');\r\n                            html.push('</div>');\r\n                            html.push('</li>');\r\n                        }\r\n                        $('.activity-list').append(html.join(''));\r\n                    } else {\r\n                        $('.retry').show();\r\n                    }\r\n                },\r\n                error: function() {\r\n                    $('.loading').hide()\r\n                    $('.retry').show();\r\n                }\r\n            })\r\n        }\r\n        GetRecords();\r\n    });\r\n    </script>",
+        "enable": true,
+        "id": 13,
+        "name": "抽奖活动"
+      },
+      {
+        "content": "<style>\n.activity-img > img {\n    display: block;\n    width: 100%;\n}\n.activity-list {\n    padding: 15px;\n}\n.activity-list li {\n    width: 100%;\n    overflow: hidden;\n    border-radius: 8px;\n    background: #fff;\n    margin-bottom: 10px;\n}\n.activity-title {\n    display: block;\n    line-height: 2;\n    text-align: center;\n    padding: 5px 0;\n}\n.activity-img {\n    width: 100%;\n    display: block;\n}\n.loading {\n    text-align: center;\n    display: none;\n}\n.nomore,\n.retry {\n    text-align: center;\n    line-height: 2;\n    display: none;\n}\n</style>\n<div id=\"db-content\">\n    <div class=\"activity-img\">\n        <img src=\"http://yun.dui88.com/developer/img/lucky_draw_640x270.png\" alt=\"\">\n    </div>\n    <div class=\"activity-list-wrapper\">\n        <ul class=\"activity-list\">\n        </ul>\n        <div class=\"loading\"><img src=\"http://yun.duiba.com.cn/webapp/img/loading.gif\" width=\"30\"></div>\n        <div class=\"nomore\">已经没有更多了！</div>\n        <div class=\"retry\">加载失败，点击重试</div>\n    </div>\n</div>\n<script>\n$(function() {\n    var\n        NextPage = true,\n        Page = 1,\n        IsLoading = false;\n    if (!NextPage) {\n        $('.nomore').show();\n    }\n    $(window).on('scroll', function() {\n        var ScrollTop = $(window).scrollTop();\n        var GroupHeight = $('.activity-list').height();\n        var WinHeight = $(window).height();\n        if (ScrollTop + WinHeight + 75 >= GroupHeight && !IsLoading && NextPage) {\n            Page++;\n            GetRecords();\n        }\n    })\n    $('.retry').on('click', function() {\n        $(this).hide();\n        GetRecords();\n    })\n\n    function GetRecords() {\n        IsLoading = true;\n        $('.loading').show();\n        $.ajax({\n            type: 'POST',\n            url: 'getcategory',\n            data: {\n                id: config.id,\n                appItemPage: Page\n            },\n            success: function(result) {\n                $('.loading').hide()\n                if (result.success) {\n                    IsLoading = false;\n                    NextPage = result.appItemNextPage;\n                    if (!NextPage) {\n                        $('.nomore').show();\n                    }\n                    var html = [];\n                    for (var i in result.data) {\n                        var item = result.data[i];\n                        html.push('<li>');\n                        html.push('<a href=\"\">');\n                        html.push('<img class=\"activity-img\" src=\"' + item.thumb + '\" alt=\"\">');\n                        html.push('<span class=\"activity-title\">' + item.title + '</span>');\n                        html.push('</a>');\n                        html.push('</li>');\n                    }\n                    $('.activity-list').append(HTML);\n                } else {\n                    $('.retry').show();\n                }\n            },\n            error: function() {\n                $('.loading').hide()\n                $('.retry').show();\n            }\n        })\n    }\n    GetRecords();\n});\n</script>",
+        "enable": true,
+        "id": 14,
+        "name": "专题活动"
+      },
+      {
+        "enable": true,
+        "id": 15,
+        "name": "测试id=5名称"
+      },
+      {
+        "content": "newcontent",
+        "enable": true,
+        "id": 16,
+        "name": "名称6"
+      },
+      {
+        "enable": true,
+        "id": 21,
+        "name": "名称2"
+      },
+      {
+        "enable": false,
+        "id": 23,
+        "name": "测试"
+      },
+      {
+        "content": "sdfsa",
+        "enable": false,
+        "id": 24,
+        "name": "222"
+      },
+      {
+        "enable": false,
+        "id": 28,
+        "name": "名称"
+      },
+      {
+        "enable": false,
+        "id": 32,
+        "name": "名称"
+      },
+      {
+        "enable": true,
+        "id": 33,
+        "name": "名称"
+      },
+      {
+        "enable": false,
+        "id": 34,
+        "name": "名称"
+      },
+      {
+        "content": "newcontent",
+        "enable": true,
+        "id": 35,
+        "name": "名称"
+      },
+      {
+        "enable": false,
+        "id": 36,
+        "name": "名称"
+      },
+      {
+        "enable": true,
+        "id": 37,
+        "name": "名称"
+      },
+      {
+        "enable": false,
+        "id": 38,
+        "name": "名称"
+      },
+      {
+        "content": "newcontent",
+        "enable": false,
+        "id": 39,
+        "name": "名称"
+      },
+      {
+        "enable": false,
+        "id": 40,
+        "name": "名称"
+      },
+      {
+        "enable": true,
+        "id": 41,
+        "name": "名称"
+      },
+      {
+        "enable": false,
+        "id": 42,
+        "name": "名称"
+      },
+      {
+        "content": "newcontent",
+        "enable": true,
+        "id": 43,
+        "name": "名称"
+      },
+      {
+        "enable": false,
+        "id": 44,
+        "name": "名称"
+      },
+      {
+        "enable": true,
+        "id": 45,
+        "name": "xx1111"
+      },
+      {
+        "content": "222",
+        "enable": false,
+        "id": 46,
+        "name": "222"
+      },
+      {
+        "content": "212",
+        "enable": false,
+        "id": 47,
+        "name": "12121"
+      },
+      {
+        "content": "xx",
+        "enable": true,
+        "id": 48,
+        "name": "xxx"
+      },
+      {
+        "content": "666",
+        "enable": false,
+        "id": 49,
+        "name": "666"
+      },
+      {
+        "content": "<test>testing...</test>",
+        "enable": false,
+        "id": 50,
+        "name": "子页面测试编辑"
+      }
+    ],
+    "customTag": "",
+    "desc": "desc",
+    "extDesc": "extDesc",
+    "freeRule": "freeRule",
+    "id": 29,
+    "imgUrl": "url",
+    "prizes": [
+      {
+        "activityId": 29,
+        "activityType": "creditgame",
+        "description": "10",
+        "facePrice": "10",
+        "id": 85,
+        "minComein": 10,
+        "payload": 3,
+        "prizeType": "phonebill",
+        "rate": "10",
+        "remain": 10,
+        "winLimit": 10
+      },
+      {
+        "activityId": 29,
+        "activityType": "creditgame",
+        "description": "10",
+        "facePrice": "10",
+        "id": 86,
+        "minComein": 10,
+        "payload": 2,
+        "prizeType": "phonebill",
+        "rate": "10",
+        "remain": 10,
+        "winLimit": 10
+      },
+      {
+        "activityId": 29,
+        "activityType": "creditgame",
+        "description": "10",
+        "facePrice": "10",
+        "id": 87,
+        "minComein": 10,
+        "payload": 1,
+        "prizeType": "phonebill",
+        "rate": "10",
+        "remain": 10,
+        "winLimit": 10
+      },
+      {
+        "activityId": 29,
+        "activityType": "creditgame",
+        "description": "11",
+        "facePrice": "10",
+        "id": 88,
+        "minComein": 11,
+        "prizeType": "alipay",
+        "rate": "11",
+        "remain": 11,
+        "winLimit": 11
+      },
+      {
+        "activityId": 29,
+        "activityType": "creditgame",
+        "description": "11",
+        "facePrice": "10",
+        "id": 89,
+        "minComein": 11,
+        "prizeType": "alipay",
+        "rate": "11",
+        "remain": 11,
+        "winLimit": 11
+      }
+    ],
+    "recommendImage": "http://yun.dui88.com/upload/ub0gy7947h.png",
+    "rule": "rule",
+    "skins": [],
+    "smallImage": "http://yun.dui88.com/images/201609/5lhrky4nvz.png",
+    "status": 3,
+    "switches": 0,
+    "title": "lixia5",
+    "type": 1,
+    "whiteImage": "http://yun.dui88.com/images/201609/xnncpgmr0k.png"
+  },
+  "success": true
+}
